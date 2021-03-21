@@ -6,31 +6,30 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    // Cached References
-    [SerializeField] Transform target;
-    [SerializeField] GameObject hurtZone; 
-    [SerializeField] GameObject hitZone; 
-    GameObject lookTarget;
-/*     GameObject player; */
+        // Cached References
+    [SerializeField] Transform target; //Player's transform, used as target for pathfinding
+    //[SerializeField] GameObject hurtZone; 
+    //[SerializeField] GameObject hitZone; 
+    GameObject lookTarget; //Empty in the player's waist, as player's ECM transform is clipping with ground in this case. Transform target with offset would do the same job
     PlayerHealth playerHealth;
     NavMeshAgent navMeshAgent;
     Animator foeAnimator;
-    // Variables
+        // Variables
     [SerializeField] float chaseRange = 6f;
     [SerializeField] float trackRange = 2.5f;
     [SerializeField] float damage = 25f;
     [SerializeField] float turnSpeed = 500f;
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
-    //bool playerInHitZone = false;
-    int ticksPerSecond = 2;
-    float gazeTimer;
+    //bool isBusy = false;
+    int ticksPerSecond = 2; //Player detection raycast rate
+    float gazeTimer = 0f;
     
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         foeAnimator = gameObject.GetComponent<Animator>();
-        gazeTimer = 0f;
+        int layerMask = LayerMask.GetMask("PlayerCollision"); //Get layer mask for detecting just the player with raycasts
         if (lookTarget == null)
             lookTarget = GameObject.FindWithTag("EnemyLookTarget");
 /*         if (player == null)
@@ -48,7 +47,7 @@ public class EnemyAI : MonoBehaviour
         {
             EngageTarget();
         }
-        else if (distanceToTarget <= chaseRange) //Become provoked when target withing chase range
+        else if (distanceToTarget <= chaseRange) //Become provoked when target withing chase range, todo: change from radial detection to conical vector3.dot detection
         {
             isProvoked = true;
             ChaseTarget();
@@ -59,7 +58,7 @@ public class EnemyAI : MonoBehaviour
 
     void CheckEyeContact() //todo: Check eye contact if player within vision collider, or always if provoked
     {
-        float duration = 1f / ticksPerSecond;
+        float duration = 1f / ticksPerSecond; //This code runs only times ticksPerSecond
         gazeTimer += Time.deltaTime;
         while (gazeTimer >= duration)
         {
@@ -76,12 +75,12 @@ public class EnemyAI : MonoBehaviour
                 ChaseTarget();
             }
 
-            if (distanceToTarget <= navMeshAgent.stoppingDistance)
+            if (distanceToTarget <= navMeshAgent.stoppingDistance) 
             {
                 //AttackTarget(); 
                 FaceTarget();
             }
-            if (distanceToTarget <= trackRange)
+            if (distanceToTarget <= trackRange) //Track range needs to be larger than navMeshAgent.stoppingDistance because navmesh stops just outside of the range
             {
                 FaceTarget();
             }    
@@ -89,12 +88,9 @@ public class EnemyAI : MonoBehaviour
 
     void AttackTarget()
     {
-        //Debug.Log(name + " has seeked and is destroying " + target.name);
-
         foeAnimator.SetBool("Attacking", true);
         foeAnimator.SetBool("Moving", false);
-        Debug.Log("Attacking to true");
-        FaceTarget();
+        //Debug.Log("Attacking");
     }
 
     void ChaseTarget()
@@ -102,15 +98,15 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
         foeAnimator.SetBool("Moving", true);
         foeAnimator.SetBool("Attacking", false);
-        Debug.Log("Attacking to false, chasing");
+        //Debug.Log("Chasing");
     }
 
-    public void PlayerInHitZone()
+    void CheckHitZone() //Use spherecast or vector3.dot cone to detect if player is in front and attack
     {
         AttackTarget();
     }
 
-    void CauseHurtEvent()
+    void CauseHurtEvent() //Event called from attack animation
     {
         playerHealth.TakeDamage(damage);
         Debug.Log("Chomp!");
@@ -121,6 +117,7 @@ public class EnemyAI : MonoBehaviour
         Vector3 direction = (lookTarget.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, turnSpeed * Time.deltaTime);
+        CheckHitZone(); //When player is close enough to be faced, we should check if enemy can reach with an attack
     }
 
     void OnDrawGizmosSelected()
