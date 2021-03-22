@@ -30,6 +30,9 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         foeAnimator = gameObject.GetComponent<Animator>();
         int layerMask = LayerMask.GetMask("PlayerCollision"); //Get layer mask for detecting just the player with raycasts
+        //int bitShift = 1 << 3;
+        //Debug.Log("bitshift should be " + bitShift);
+        //Debug.Log("layermask is " + layerMask); //This should return 8
         if (lookTarget == null)
             lookTarget = GameObject.FindWithTag("EnemyLookTarget");
 /*         if (player == null)
