@@ -1,49 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5039439444993346168
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5039439444993346171}
-  - component: {fileID: 5039439444993346170}
-  m_Layer: 0
-  m_Name: VisionRange
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5039439444993346171
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5039439444993346168}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5039439445804548534}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5039439444993346170
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5039439444993346168}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 13.49, y: 2.29, z: 15.380692}
-  m_Center: {x: 0, y: 0, z: 8.295002}
 --- !u!1 &5039439445269454764
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1.2089, y: 0.9815301, z: 1.2739388}
   m_Children: []
   m_Father: {fileID: 5039439445804548534}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5039439445269454760
 MeshFilter:
@@ -255,7 +211,6 @@ Transform:
   - {fileID: 5039439445772668604}
   - {fileID: 5039439446062240155}
   - {fileID: 5039439445988456018}
-  - {fileID: 5039439444993346171}
   - {fileID: 5039439445856565506}
   - {fileID: 5039439445269454767}
   m_Father: {fileID: 0}
@@ -310,8 +265,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  hurtZone: {fileID: 5039439445856565507}
-  hitZone: {fileID: 5039439445269454764}
   chaseRange: 6
   trackRange: 2.7
   damage: 25
@@ -366,7 +319,7 @@ Transform:
   m_LocalScale: {x: 1.2089, y: 0.9815301, z: 1.2739388}
   m_Children: []
   m_Father: {fileID: 5039439445804548534}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5039439445856565535
 MeshFilter:
