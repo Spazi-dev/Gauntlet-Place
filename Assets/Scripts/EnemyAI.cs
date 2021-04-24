@@ -97,6 +97,8 @@ public class EnemyAI : MonoBehaviour
 
     void AttackTarget()
     {
+        navMeshAgent.velocity = Vector3.zero;
+        navMeshAgent.SetDestination(transform.position); //Stop trying to approach player when attacking and remove latent velocity
         foeAnimator.SetBool("Attacking", true);
         foeAnimator.SetBool("Moving", false);
         isBusy = true; 
