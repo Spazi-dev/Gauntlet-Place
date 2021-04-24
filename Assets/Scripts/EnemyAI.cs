@@ -7,32 +7,35 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
         // Cached References
-    [SerializeField] Transform target; //Player's transform, used as target for pathfinding
+    [SerializeField] Transform target; //Player's transform, used as target for pathfinding. Todo: Doesn't need to be serialized really
     //[SerializeField] GameObject hurtZone; 
-    //[SerializeField] GameObject hitZone; 
-    GameObject lookTarget; //Empty in the player's waist, as player's ECM transform is clipping with ground in this case. Transform target with offset would do the same job
+    [SerializeField] Transform hitZone; 
+    [SerializeField] float hitZoneRadius = 0.15f;
+    [SerializeField] float hurtZoneRadius = 0.5f;
+    [SerializeField] float chaseRange = 6f;
+    [SerializeField] float trackRange = 2.5f;
+    [SerializeField] float damage = 25f;
+    [SerializeField] float turnSpeed = 150f;
+    GameObject lookTarget; //Empty in the player's waist, as player's ECM transform is clipping with ground in this case.
     PlayerHealth playerHealth;
     NavMeshAgent navMeshAgent;
     Animator foeAnimator;
         // Variables
-    [SerializeField] float chaseRange = 6f;
-    [SerializeField] float trackRange = 2.5f;
-    [SerializeField] float damage = 25f;
-    [SerializeField] float turnSpeed = 500f;
-    float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
-    //bool isBusy = false;
+    bool isBusy = false;
     int ticksPerSecond = 2; //Player detection raycast rate
+    int playerLayer;
+    float distanceToTarget = Mathf.Infinity;
     float gazeTimer = 0f;
     
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         foeAnimator = gameObject.GetComponent<Animator>();
-        int layerMask = LayerMask.GetMask("PlayerCollision"); //Get layer mask for detecting just the player with raycasts
+        playerLayer = LayerMask.GetMask("PlayerCollision"); //Get layer mask for detecting just the player with raycasts
         //int bitShift = 1 << 3;
         //Debug.Log("bitshift should be " + bitShift);
-        //Debug.Log("layermask is " + layerMask); //This should return 8
+        //Debug.Log("playerLayer is " + playerLayer); //This should return 8
         if (lookTarget == null)
             lookTarget = GameObject.FindWithTag("EnemyLookTarget");
 /*         if (player == null)
@@ -44,19 +47,22 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        CheckEyeContact(); //Check visibility to player every ticksPerSecond times per second
+        
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        if (isProvoked) //If provoked, always aggro, todo: add timer that removes provoked if no eye contact
+        if (!isBusy) //Only act if not attacking or stunned
         {
-            EngageTarget();
+            if (isProvoked) //If provoked, always aggro, todo: add timer that removes provoked if no eye contact
+            {
+                EngageTarget();
+            }
+            else if (distanceToTarget <= chaseRange) //Become provoked when target withing chase range, todo: change from radial detection to conical vector3.dot detection
+            {
+                isProvoked = true;
+                ChaseTarget();
+            }
         }
-        else if (distanceToTarget <= chaseRange) //Become provoked when target withing chase range, todo: change from radial detection to conical vector3.dot detection
-        {
-            isProvoked = true;
-            ChaseTarget();
-        }
-        //Check visibility to player every ticksPerSecond times per second
-        CheckEyeContact();
     }
 
     void CheckEyeContact() //todo: Check eye contact if player within vision collider, or always if provoked
@@ -93,6 +99,7 @@ public class EnemyAI : MonoBehaviour
     {
         foeAnimator.SetBool("Attacking", true);
         foeAnimator.SetBool("Moving", false);
+        isBusy = true; 
         //Debug.Log("Attacking");
     }
 
@@ -104,15 +111,31 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log("Chasing");
     }
 
-    void CheckHitZone() //Use spherecast or vector3.dot cone to detect if player is in front and attack
+    void CheckHitZone() //Check if player is in the middle of attack's effect to initiate attack
     {
-        AttackTarget();
+        if (Physics.CheckSphere(hitZone.position, hitZoneRadius, playerLayer))
+        {
+            AttackTarget();
+        }
     }
 
-    void CauseHurtEvent() //Event called from attack animation
+    void CheckHurtZoneEvent() //Event called by attack animation to check if attack AoE
+    {
+        if (Physics.CheckSphere(hitZone.position, hurtZoneRadius, playerLayer))
+        {
+            CauseHurt();
+        }
+    }
+
+    void CauseHurt() //Damage
     {
         playerHealth.TakeDamage(damage);
         Debug.Log("Chomp!");
+    }
+
+    void FreeFromBusy() //Event called by finishing animations that freeze behaviour
+    {
+        isBusy = false;
     }
 
     void FaceTarget()
