@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0553e3840baa47043b90229eba0e17c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 709d84dc558f6134a8f56688c03004c2, type: 2}
+      objectReference: {fileID: 2100000, guid: c88b2d41c28b9144bbe8a04ea96645b6, type: 2}
     - target: {fileID: -7511558181221131132, guid: 0553e3840baa47043b90229eba0e17c4, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0553e3840baa47043b90229eba0e17c4, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 709d84dc558f6134a8f56688c03004c2, type: 2}
+      objectReference: {fileID: 2100000, guid: c88b2d41c28b9144bbe8a04ea96645b6, type: 2}
     - target: {fileID: 919132149155446097, guid: 0553e3840baa47043b90229eba0e17c4, type: 3}
       propertyPath: m_Name
       value: DungeonGenericPillar
