@@ -239,7 +239,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5039439445804548539}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.8
   m_Speed: 3.5
   m_Acceleration: 16
   avoidancePriority: 50
@@ -266,6 +266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   hitZone: {fileID: 5039439445269454767}
+  hitZoneRadius: 0.15
+  hurtZoneRadius: 0.5
   chaseRange: 6
   trackRange: 2.7
   damage: 25
