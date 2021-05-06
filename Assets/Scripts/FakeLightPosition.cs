@@ -5,8 +5,14 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class FakeLightPosition : MonoBehaviour 
 {
+    [Header("Note: This script requires an object tagged with PlayerEffectTarget!")]
+    [Space]
+
     [SerializeField]
     bool disableShadow = false;
+    //[SerializeField]
+    GameObject playerEffectTarget;
+    Transform lightPositionTarget;
 
     #region single instance check, only one instance should set globals
     private static FakeLightPosition _instance;
@@ -21,11 +27,16 @@ public class FakeLightPosition : MonoBehaviour
         }
     }
     #endregion
-
+    private void Start()
+    {
+        if (playerEffectTarget == null)
+        playerEffectTarget = GameObject.FindWithTag("PlayerEffectTarget");
+        lightPositionTarget = playerEffectTarget.GetComponent<Transform>();
+    }
     void Update()
     {
-        Shader.SetGlobalVector("Vector3_LightPosition", transform.position);
-        float shadowScale = disableShadow ? 1f : 0f;
-        Shader.SetGlobalFloat("Float_DisableShadow", shadowScale);
+        Shader.SetGlobalVector("Vector3_LightPosition", lightPositionTarget.position);
+        float shadowScale = disableShadow ? 1f : 0f; //This doesn't need to be checked in final build, if shadows are always meant to be enabled
+        Shader.SetGlobalFloat("Float_DisableShadow", shadowScale); //...nor this set every frame
     }
 }
