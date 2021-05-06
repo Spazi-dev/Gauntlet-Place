@@ -10245,11 +10245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197955140114065605, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000014270424
+      value: -0.00000014472458
       objectReference: {fileID: 0}
     - target: {fileID: 3197955140114065605, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000007867715
+      value: 0.00000007979103
       objectReference: {fileID: 0}
     - target: {fileID: 3197955140114065606, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_ClearFlags
@@ -10289,11 +10289,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197955140280024676, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000014270424
+      value: -0.00000014472458
       objectReference: {fileID: 0}
     - target: {fileID: 3197955140280024676, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000007867715
+      value: 0.00000007979103
       objectReference: {fileID: 0}
     - target: {fileID: 3197955140280024677, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_Follow
@@ -10313,11 +10313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197955141554898542, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0000011630335
+      value: -0.000001134949
       objectReference: {fileID: 0}
     - target: {fileID: 3197955141554898542, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0000008235734
+      value: 0.00000080368596
       objectReference: {fileID: 0}
     - target: {fileID: 3197955141554898542, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -10342,6 +10342,10 @@ PrefabInstance:
     - target: {fileID: 3199779002246957910, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575401106726981116, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
+      propertyPath: disableShadow
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5072219731986076184, guid: b9d47787a50961846a380fa3a0de521b, type: 3}
       propertyPath: m_Name
