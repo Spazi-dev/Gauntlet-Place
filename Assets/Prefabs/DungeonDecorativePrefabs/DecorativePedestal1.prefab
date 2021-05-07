@@ -116,11 +116,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 7661c8f4c436d914a9bf28bdc9b1c5ae, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: a9b3422236432b84ab2589bbbe09f712, type: 2}
+      objectReference: {fileID: 2100000, guid: 2654845df95fad74986c9c1835c986f1, type: 2}
     - target: {fileID: -7511558181221131132, guid: 7661c8f4c436d914a9bf28bdc9b1c5ae, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: a9b3422236432b84ab2589bbbe09f712, type: 2}
+      objectReference: {fileID: 2100000, guid: 2654845df95fad74986c9c1835c986f1, type: 2}
     - target: {fileID: 919132149155446097, guid: 7661c8f4c436d914a9bf28bdc9b1c5ae, type: 3}
       propertyPath: m_Name
       value: DecorativePedestal1-1
