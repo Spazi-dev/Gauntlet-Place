@@ -9,6 +9,8 @@ public class OcclusionFade : MonoBehaviour
     GameObject playerEffectTarget;
     Transform fadePositionTarget;
     public Component[] meshRenderers;
+    //public Material[] allMaterials;
+
 /*     bool objectVisible = true;
     bool objectWasVisible = true; */
     float fadeSpeed = 3.5f;
@@ -44,13 +46,20 @@ public class OcclusionFade : MonoBehaviour
         {
             transparency = Mathf.MoveTowards(transparency, invisible, fadeSpeed * Time.deltaTime);
         }
-        SetTransparency(); //Transparency is being set on every frame on every mesh. Refactor so it's only set when bool objectVisible changes?
+        SetTransparency(); //Transparency is being set on every frame on every mesh and every material. Refactor so it's only set when bool objectVisible changes?
         //objectVisible = false;
     }
 
     private void SetTransparency()
     {
         foreach (MeshRenderer rend in meshRenderers)
-            rend.material.SetFloat("Float_DitherTransparency", transparency);
+        {
+            List<Material> allMaterials = new List<Material>();
+            rend.GetMaterials(allMaterials);
+            foreach(Material mat in allMaterials)
+            {
+                mat.SetFloat("Float_DitherTransparency", transparency);
+            }
+        }
     }
 }

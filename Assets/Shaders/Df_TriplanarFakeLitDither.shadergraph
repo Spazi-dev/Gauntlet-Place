@@ -1952,7 +1952,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "445d3ce570ea4fb1a4034ca5bd16b8be",
     "m_Id": 0,
-    "m_DisplayName": "SideOffset (1)",
+    "m_DisplayName": "SideOffset",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2355,7 +2355,7 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.GroupData",
     "m_ObjectId": "5a2d9f6c2c664056921dd769243dac9b",
-    "m_Title": "Angluar Fade Edge",
+    "m_Title": "Angular Fade Edge",
     "m_Position": {
         "x": -2612.0,
         "y": -419.9999084472656
