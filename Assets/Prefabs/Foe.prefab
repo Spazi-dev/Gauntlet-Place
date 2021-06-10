@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5039439445269454760}
   - component: {fileID: 5039439445269454761}
   - component: {fileID: 5039439445269454766}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: HitZone
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 5039439445772668604}
   - component: {fileID: 5039439445772668606}
   - component: {fileID: 5039439445772668607}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FoeFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0eeb29efd29b8469b014b5f3e9a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   hitZone: {fileID: 5039439445269454767}
   hitZoneRadius: 0.15
   hurtZoneRadius: 0.5
@@ -303,7 +302,7 @@ GameObject:
   - component: {fileID: 5039439445856565535}
   - component: {fileID: 5039439445856565532}
   - component: {fileID: 5039439445856565533}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: HurtZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +397,7 @@ GameObject:
   - component: {fileID: 5039439445920724756}
   - component: {fileID: 5039439445920724758}
   - component: {fileID: 5039439445920724759}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FoeCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +479,7 @@ GameObject:
   - component: {fileID: 5039439445988456047}
   - component: {fileID: 5039439445988456044}
   - component: {fileID: 5039439445988456045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +574,7 @@ GameObject:
   - component: {fileID: 5039439446062240148}
   - component: {fileID: 5039439446062240149}
   - component: {fileID: 5039439446062240154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

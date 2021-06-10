@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
         // Cached References
-    [SerializeField] Transform target; //Player's transform, used as target for pathfinding. Todo: Doesn't need to be serialized really
+    //[SerializeField] Transform target; //Player's transform, used as target for pathfinding. Todo: Doesn't need to be serialized really
     //[SerializeField] GameObject hurtZone; 
     [SerializeField] Transform hitZone; 
     [SerializeField] float hitZoneRadius = 0.15f;
@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour
     {
         CheckEyeContact(); //Check visibility to player every ticksPerSecond times per second
         
-        distanceToTarget = Vector3.Distance(target.position, transform.position);
+        distanceToTarget = Vector3.Distance(lookTarget.transform.position, transform.position);
 
         if (!isBusy) //Only act if not attacking or stunned
         {
@@ -107,7 +107,7 @@ public class EnemyAI : MonoBehaviour
 
     void ChaseTarget()
     {
-        navMeshAgent.SetDestination(target.position);
+        navMeshAgent.SetDestination(lookTarget.transform.position);
         foeAnimator.SetBool("Moving", true);
         foeAnimator.SetBool("Attacking", false);
         //Debug.Log("Chasing");
